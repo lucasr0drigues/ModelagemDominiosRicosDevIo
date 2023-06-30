@@ -23,12 +23,10 @@ namespace NerdStore.Catalogo.Domain
             string nome,
             string descricao,
             bool ativo,
+            Guid categoriaId,
             decimal valor,
             DateTime dataCadastro,
-            string imagem,
-            int quantidadeEstoque,
-            Guid categoriaId,
-            Categoria categoria)
+            string imagem)
         {
             Nome = nome;
             Descricao = descricao;
@@ -36,13 +34,54 @@ namespace NerdStore.Catalogo.Domain
             Valor = valor;
             DataCadastro = dataCadastro;
             Imagem = imagem;
-            QuantidadeEstoque = quantidadeEstoque;
             CategoriaId = categoriaId;
+        }
+
+        public void Ativar() => Ativo = true;
+        public void Desativar() => Ativo = false;
+
+        public void AlterarCategoria(Categoria categoria)
+        {
             Categoria = categoria;
+            CategoriaId = categoria.Id;
+        }
+
+        public void AlterarDescricao(string descricao)
+            => Descricao = descricao;
+
+        public void DebitarEstoque(int quantidade)
+        {
+            QuantidadeEstoque -= Math.Abs(quantidade);
+        }
+
+        public void ReporEstoque(int quantidade)
+        {
+            QuantidadeEstoque += Math.Abs(quantidade);
+        }
+
+        public bool PossuiEstoque(int quantidade)
+            => QuantidadeEstoque >= quantidade;
+
+        public void Validar()
+        {
+
         }
     }
 
     public class Categoria : Entity
     {
+        public string Nome { get; private set; }
+        public int Codigo { get; private set; }
+
+        public Categoria(string nome, int codigo)
+        {
+            Nome = nome;
+            Codigo = codigo;
+        }
+
+        public override string ToString()
+        {
+            return $"{Nome} - {Codigo}";
+        }
     }
 }
