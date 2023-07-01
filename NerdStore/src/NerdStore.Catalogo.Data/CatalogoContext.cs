@@ -25,7 +25,7 @@ namespace NerdStore.Catalogo.Data
                 e.GetProperties().Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("varchar(100)");
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogoContext).Assembly);
         }
 
         public Task<bool> Commit()
