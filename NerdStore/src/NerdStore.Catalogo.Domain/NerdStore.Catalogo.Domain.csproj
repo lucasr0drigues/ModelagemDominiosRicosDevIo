@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NerdStore.Core\NerdStore.Core.csproj" />
+    <PackageReference Include="mediatr" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
+    <ProjectReference Include="..\NerdStore.Core\NerdStore.Core.csproj" />
   </ItemGroup>
 
 </Project>
