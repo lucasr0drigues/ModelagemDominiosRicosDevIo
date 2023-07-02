@@ -25,18 +25,18 @@ namespace NerdStore.Core.DomainObjects
             return Id.Equals(compareTo.Id);
         }
 
-        public static bool operator ==(Entity a, Entity b)
+        public static bool operator ==(Entity? a, Entity? b)
         {
-            if (ReferenceEquals(null, a) && ReferenceEquals(b, null)) 
+            if (ReferenceEquals(null, a) && ReferenceEquals(b, null))
                 return true;
 
             if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
-                    return false;
+                return false;
 
             return a.Equals(b);
         }
 
-        public static bool operator !=(Entity a, Entity b)
+        public static bool operator !=(Entity? a, Entity? b)
         {
             return !(a == b);
         }
