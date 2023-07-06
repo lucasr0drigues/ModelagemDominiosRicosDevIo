@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,20 @@ using System.Threading.Tasks;
 
 namespace NerdStore.Catalogo.Domain.Events
 {
-    internal class ProdutoEventHandler
+    public class ProdutoEventHandler : INotificationHandler<ProdutoAbaixoEstoqueEvent>
     {
+        private readonly IProdutoRepository _produtoRepository;
+
+        public ProdutoEventHandler(IProdutoRepository produtoRepository)
+        {
+            _produtoRepository = produtoRepository;
+        }
+
+        public async Task Handle(ProdutoAbaixoEstoqueEvent mensagem, CancellationToken cancellationToken)
+        {
+            var produto = await _produtoRepository.ObterPorId(mensagem.AggregateId);
+
+            // Ex: Enviar um email para aquisicao de mais produtos
+        }
     }
 }

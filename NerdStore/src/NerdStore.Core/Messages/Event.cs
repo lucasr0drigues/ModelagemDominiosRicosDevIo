@@ -1,6 +1,8 @@
-﻿namespace NerdStore.Core.Messages
+﻿using MediatR;
+
+namespace NerdStore.Core.Messages
 {
-    public abstract class Event : Message
+    public abstract class Event : Message, INotification
     {
         public DateTime Timestamp { get; private set; }
 

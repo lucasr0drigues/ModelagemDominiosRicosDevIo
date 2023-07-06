@@ -1,4 +1,5 @@
-﻿using NerdStore.Catalogo.Application.ViewModels;
+﻿using AutoMapper;
+using NerdStore.Catalogo.Application.ViewModels;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Core.DomainObjects;
 using System;
