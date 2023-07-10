@@ -168,5 +168,17 @@ namespace NerdStore.Vendas.Domain
         {
             PedidoStatus = PedidoStatus.Cancelado;
         }
+
+        public static class PedidoFactory
+        {
+            public static Pedido NovoPedidoRascunho(Guid clienteId)
+            {
+                return new Pedido
+                {
+                    ClienteId = clienteId,
+                    PedidoStatus = PedidoStatus.Rascunho
+                };
+            }
+        }
     }
 }
