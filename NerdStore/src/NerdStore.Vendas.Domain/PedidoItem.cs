@@ -21,13 +21,11 @@ namespace NerdStore.Vendas.Domain
         protected PedidoItem() { }
 
         public PedidoItem(
-            Guid pedidoId,
             Guid produtoId,
             string produtoNome,
             int quantidade,
             decimal valorUnitario)
         {
-            PedidoId = pedidoId;
             ProdutoId = produtoId;
             ProdutoNome = produtoNome;
             Quantidade = quantidade;
