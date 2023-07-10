@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NerdStore.Vendas.Domain
 {
-    internal class TipoDescontoVoucher
+    public enum TipoDescontoVoucher
     {
     }
 }

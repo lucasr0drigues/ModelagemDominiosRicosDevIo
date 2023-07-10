@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NerdStore.Vendas.Domain
 {
-    public class Pedido : Entity
+    public class Pedido : Entity, IAggregateRoot
     {
     }
 }
