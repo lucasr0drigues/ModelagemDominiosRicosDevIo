@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NerdStore.Vendas.Application.Commands
 {
-    public class FileName : Command
+    public class AdicionarItemPedidoCommand : Command
     {
         public Guid ClienteId { get; private set; }
         public Guid ProdutoId { get; private set; }
@@ -15,7 +15,7 @@ namespace NerdStore.Vendas.Application.Commands
         public int Quantidade { get; private set; }
         public decimal ValorUnitario { get; private set; }
 
-        public FileName(
+        public AdicionarItemPedidoCommand(
             Guid clienteId,
             Guid produtoId,
             string nome,
