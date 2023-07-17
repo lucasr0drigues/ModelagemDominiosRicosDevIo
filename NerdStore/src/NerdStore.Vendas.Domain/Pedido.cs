@@ -12,8 +12,8 @@ namespace NerdStore.Vendas.Domain
     {
         public int Codigo { get; private set; }
         public Guid ClienteId { get; private set; }
-        public Guid? VoucherId { get; set; }
-        public bool VoucherUtilizado { get; set; }
+        public Guid? VoucherId { get; private set; }
+        public bool VoucherUtilizado { get; private set; }
         public decimal Desconto { get; private set; }
         public decimal ValorTotal { get; private set; }
         public DateTime DataCadastro { get; private set; }
@@ -173,11 +173,13 @@ namespace NerdStore.Vendas.Domain
         {
             public static Pedido NovoPedidoRascunho(Guid clienteId)
             {
-                return new Pedido
+                var pedido = new Pedido
                 {
-                    ClienteId = clienteId,
-                    PedidoStatus = PedidoStatus.Rascunho
+                    ClienteId = clienteId
                 };
+
+                pedido.TornarRascunho();
+                return pedido;
             }
         }
     }
