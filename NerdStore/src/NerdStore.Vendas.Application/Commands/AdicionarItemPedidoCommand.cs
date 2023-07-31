@@ -28,5 +28,12 @@ namespace NerdStore.Vendas.Application.Commands
             Quantidade = quantidade;
             ValorUnitario = valorUnitario;
         }
+
+        public override bool EhValido()
+        {
+            ValidationResult = new AdicionarItemPedidoValidation().Validate(this);
+
+            return ValidationResult.IsValid;
+        }
     }
 }
