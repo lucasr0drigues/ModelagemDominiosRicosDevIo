@@ -29,8 +29,29 @@ namespace NerdStore.Vendas.Application.Commands
                 message.Quantidade,
                 message.ValorUnitario);
 
+            if(pedido == null)
+            {
+                pedido = Pedido.PedidoFactory.NovoPedidoRascunho(message.ClienteId);
+                pedido.AdicionarItem(pedidoItem);
 
-            return true;
+                _pedidoRepository.Adicionar(pedido);
+            }
+            else
+            {
+                var pedidoItemExistente = pedido.PedidoItemExistente(pedidoItem);
+                pedido.AdicionarItem(pedidoItem);
+
+                if(pedidoItemExistente)
+                {
+                    _pedidoRepository.AtualizarItem(pedido.PedidoItens.FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId));
+                }
+                else
+                {
+                    _pedidoRepository.AdicionarItem(pedidoItem);
+                }
+            }
+
+            return await _pedidoRepository.UnitOfWork.Commit();
         }
 
         private bool ValidarComando(Command message)
